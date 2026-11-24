@@ -1,0 +1,245 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Luxury perfume product in the catalog",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "slug": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-z0-9\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "brand": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "subtitle": { "type": "string", "maxLength": 180 },
+        "category": { "type": "string", "enum": ["Best Sellers", "New Arrivals", "Exclusive Collections", "Limited Editions"] },
+        "fragranceFamily": { "type": "string", "enum": ["Floral", "Woody", "Oriental", "Fresh", "Citrus", "Gourmand"] },
+        "concentration": { "type": "string", "enum": ["Extrait de Parfum", "Eau de Parfum", "Eau de Toilette"] },
+        "longevityHours": { "type": "number" },
+        "intensity": { "type": "string", "enum": ["Intimate", "Moderate", "Statement"] },
+        "price": { "type": "number" },
+        "volumeMl": { "type": "number" },
+        "stockCount": { "type": "number" },
+        "popularityScore": { "type": "number" },
+        "shortDescription": { "type": "string", "maxLength": 240 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "perfumerNote": { "type": "string", "maxLength": 600 },
+        "topNotes": { "type": "array" },
+        "heartNotes": { "type": "array" },
+        "baseNotes": { "type": "array" },
+        "occasion": { "type": "array" },
+        "season": { "type": "array" },
+        "images": { "type": "array" },
+        "ratingAvg": { "type": "number" },
+        "reviewCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "slug", "name", "brand", "category", "fragranceFamily", "concentration", "longevityHours", "intensity", "price", "volumeMl", "stockCount", "shortDescription", "description", "topNotes", "heartNotes", "baseNotes", "images", "createdAt", "updatedAt"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer product review and rating",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "authorName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "rating": { "type": "number" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "comment": { "type": "string", "minLength": 1, "maxLength": 1500 },
+        "verifiedPurchase": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "authorName", "rating", "title", "comment", "verifiedPurchase", "createdAt"]
+    },
+    "UserPreferences": {
+      "title": "UserPreferences",
+      "description": "Non-PII customer preferences, wishlist, quiz profile, and 2FA state",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "role": { "type": "string", "enum": ["customer", "admin"] },
+        "theme": { "type": "string", "enum": ["light", "dark"] },
+        "wishlistIds": { "type": "array" },
+        "recentlyViewedIds": { "type": "array" },
+        "preferredFamilies": { "type": "array" },
+        "favoriteNotes": { "type": "array" },
+        "twoFactorEnabled": { "type": "boolean" },
+        "emailNotifications": { "type": "boolean" },
+        "reorderReminders": { "type": "boolean" },
+        "launchAlerts": { "type": "boolean" },
+        "pushEnabled": { "type": "boolean" },
+        "privacyAnalytics": { "type": "boolean" },
+        "quizSummary": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "role", "theme", "wishlistIds", "recentlyViewedIds", "preferredFamilies", "favoriteNotes", "twoFactorEnabled", "emailNotifications", "reorderReminders", "launchAlerts", "pushEnabled", "privacyAnalytics", "createdAt", "updatedAt"]
+    },
+    "UserPrivateProfile": {
+      "title": "UserPrivateProfile",
+      "description": "Strictly owner-scoped PII and 2FA verification metadata",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "fullName": { "type": "string", "maxLength": 120 },
+        "email": { "type": "string", "maxLength": 180 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "totpSecret": { "type": "string", "maxLength": 128 },
+        "totpVerified": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "fullName", "email", "updatedAt"]
+    },
+    "Address": {
+      "title": "Address",
+      "description": "Customer saved shipping address",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "fullName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "line1": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "line2": { "type": "string", "maxLength": 120 },
+        "city": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "state": { "type": "string", "maxLength": 80 },
+        "postalCode": { "type": "string", "minLength": 1, "maxLength": 24 },
+        "country": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "isDefault": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "label", "fullName", "line1", "city", "postalCode", "country", "isDefault", "createdAt", "updatedAt"]
+    },
+    "CartItem": {
+      "title": "CartItem",
+      "description": "Persistent shopping bag line item",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "productId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "productName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "brand": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "image": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "volumeMl": { "type": "number" },
+        "unitPrice": { "type": "number" },
+        "quantity": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "productId", "productName", "brand", "image", "volumeMl", "unitPrice", "quantity", "updatedAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer luxury fragrance order",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "orderNumber": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "customerEmail": { "type": "string", "minLength": 3, "maxLength": 180 },
+        "customerName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "promoCode": { "type": "string", "maxLength": 40 },
+        "shippingCost": { "type": "number" },
+        "tax": { "type": "number" },
+        "total": { "type": "number" },
+        "shippingMethod": { "type": "string", "enum": ["Complimentary Atelier Courier", "Express Air Courier", "Same-Day Boutique Courier"] },
+        "shippingAddress": { "type": "string", "minLength": 5, "maxLength": 500 },
+        "paymentMethod": { "type": "string", "enum": ["Apple Pay", "Card", "Atelier Concierge Reservation"] },
+        "paymentStatus": { "type": "string", "enum": ["paid", "reserved", "pending_config"] },
+        "status": { "type": "string", "enum": ["confirmed", "preparing", "shipped", "delivered", "cancelled"] },
+        "trackingCode": { "type": "string", "maxLength": 64 },
+        "giftNote": { "type": "string", "maxLength": 300 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "orderNumber", "customerEmail", "customerName", "items", "subtotal", "discount", "shippingCost", "tax", "total", "shippingMethod", "shippingAddress", "paymentMethod", "paymentStatus", "status", "createdAt", "updatedAt"]
+    },
+    "RestockAlert": {
+      "title": "RestockAlert",
+      "description": "Product restock alert subscription",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "productId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "productName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "email": { "type": "string", "minLength": 3, "maxLength": 180 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "productId", "productName", "email", "createdAt"]
+    },
+    "NotificationItem": {
+      "title": "NotificationItem",
+      "description": "User engagement notification record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "type": { "type": "string", "enum": ["order", "shipping", "reorder", "restock", "launch"] },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "message": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "title", "message", "read", "createdAt"]
+    },
+    "SupportTicket": {
+      "title": "SupportTicket",
+      "description": "Customer fragrance consultation and live support thread",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userEmail": { "type": "string", "minLength": 3, "maxLength": 180 },
+        "userName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "subject": { "type": "string", "minLength": 1, "maxLength": 140 },
+        "category": { "type": "string", "enum": ["Order Support", "Fragrance Consultation", "Delivery", "Bespoke Inquiry"] },
+        "status": { "type": "string", "enum": ["open", "resolved"] },
+        "messages": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "userEmail", "userName", "subject", "category", "status", "messages", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Publicly readable catalog of luxury perfumes"
+    },
+    "/products/{productId}/reviews/{reviewId}": {
+      "schema": { "$ref": "#/entities/Review" },
+      "description": "Customer reviews for a specific perfume"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserPreferences" },
+      "description": "User fragrance preferences, wishlist, and notification settings"
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": { "$ref": "#/entities/UserPrivateProfile" },
+      "description": "Isolated PII profile and 2FA metadata"
+    },
+    "/users/{userId}/addresses/{addressId}": {
+      "schema": { "$ref": "#/entities/Address" },
+      "description": "Saved customer shipping addresses"
+    },
+    "/users/{userId}/cart/{itemId}": {
+      "schema": { "$ref": "#/entities/CartItem" },
+      "description": "Persistent customer shopping bag items"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer orders and fulfillment tracking"
+    },
+    "/restockAlerts/{alertId}": {
+      "schema": { "$ref": "#/entities/RestockAlert" },
+      "description": "Customer restock notification requests"
+    },
+    "/users/{userId}/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/NotificationItem" },
+      "description": "Customer notifications inbox"
+    },
+    "/supportTickets/{ticketId}": {
+      "schema": { "$ref": "#/entities/SupportTicket" },
+      "description": "Live concierge support and consultation threads"
+    }
+  }
+}

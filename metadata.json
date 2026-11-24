@@ -1,0 +1,6 @@
+{
+  "name": "Maison Léonie – Haute Parfumerie",
+  "description": "An ultra-luxury Parisian fragrance house offering signature extraits, interactive olfactive discovery, personalized scent profiling, and bespoke client concierge care.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
