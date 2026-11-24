@@ -7,7 +7,8 @@ import {defineConfig} from 'vite';
 export default defineConfig(({ command }) => {
   const isDev = command === 'serve';
   const isVercel = Boolean(process.env.VERCEL);
-  const base = isDev || isVercel ? '/' : '/maison-leonie/';
+  const isCloudflare = Boolean(process.env.CF_PAGES);
+  const base = isDev || isVercel || isCloudflare || process.env.BASE_PATH === '/' ? '/' : '/maison-leonie/';
 
   return {
     base,
