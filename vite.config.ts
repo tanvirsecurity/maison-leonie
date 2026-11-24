@@ -4,9 +4,13 @@ import fs from 'fs';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({ command }) => {
+  const isDev = command === 'serve';
+  const isVercel = Boolean(process.env.VERCEL);
+  const base = isDev || isVercel ? '/' : '/maison-leonie/';
+
   return {
-    base: './',
+    base,
     plugins: [
       react(),
       tailwindcss(),

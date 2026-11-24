@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../lib/assets';
 import React, { useState } from 'react';
 import {
   AlertTriangle,
@@ -225,8 +226,8 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
       occasion: ['Evening', 'Signature', 'Private Reserve'],
       season: ['Autumn', 'Winter', 'Spring'],
       images: [
-        '/src/assets/images/bottle_oud_velours_1795464159199.jpg',
-        '/src/assets/images/hero_shutter_pickup_1795464157955.jpg',
+        getAssetUrl('/src/assets/images/bottle_oud_velours_1795464159199.jpg'),
+        getAssetUrl('/src/assets/images/hero_shutter_pickup_1795464157955.jpg'),
       ],
       ratingAvg: 5.0,
       reviewCount: 1,

@@ -1,12 +1,11 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import offerVideo from '../assets/videos/atelier_background.mp4';
 
 interface OfferSectionProps {
   onExploreCollection: () => void;
   onCopyPromo?: (code: string) => void;
 }
-
-const offerVideo = new URL('../../Down Hero Section Background video.mp4', import.meta.url).href;
 
 export const OfferSection: React.FC<OfferSectionProps> = ({ onExploreCollection, onCopyPromo }) => (
   <section

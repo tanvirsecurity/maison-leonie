@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../lib/assets';
 import React, { useState } from 'react';
 import {
   ArrowLeft,
@@ -83,7 +84,7 @@ const SAMPLE_DEMO_ORDERS: OrderRecord[] = [
         volumeMl: 100,
         unitPrice: 340,
         quantity: 1,
-        image: '/src/assets/images/hero_shutter_pickup_1795464157955.jpg',
+        image: getAssetUrl('/src/assets/images/hero_shutter_pickup_1795464157955.jpg'),
         engraving: 'Pour Camille · Oct 14',
       },
       {
@@ -92,7 +93,7 @@ const SAMPLE_DEMO_ORDERS: OrderRecord[] = [
         volumeMl: 60,
         unitPrice: 165,
         quantity: 1,
-        image: '/src/assets/images/atelier_grasse_organ_1795464161874.jpg',
+        image: getAssetUrl('/src/assets/images/atelier_grasse_organ_1795464161874.jpg'),
       },
     ],
     subtotal: 505,
@@ -123,7 +124,7 @@ const SAMPLE_DEMO_ORDERS: OrderRecord[] = [
         volumeMl: 100,
         unitPrice: 285,
         quantity: 1,
-        image: '/src/assets/images/bottle_oud_velours_1795464159199.jpg',
+        image: getAssetUrl('/src/assets/images/bottle_oud_velours_1795464159199.jpg'),
         engraving: 'Courage & Grace',
       },
     ],

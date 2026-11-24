@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../lib/assets';
 import React, { useRef, useState } from 'react';
 import {
   Check,
@@ -19,14 +20,14 @@ interface FlaconEngravingStudioProps {
 }
 
 const BOTTLE_PORTRAITS: Record<string, string> = {
-  'voie-dor': '/src/assets/images/bottle_santal_imperial_1795464160135.jpg',
-  'ember-noir': '/src/assets/images/bottle_oud_velours_1795464159199.jpg',
-  'lumiere-cherie': '/src/assets/images/bottle_iris_blanc_1795464159068.jpg',
-  'aurore-luminaire': '/src/assets/images/bottle_neroli_soleil_1795464160313.jpg',
-  'nocturne-ambre': '/src/assets/images/bottle_rose_nuit_1795464160072.jpg',
-  'sandalwood-amber': '/src/assets/images/bottle_santal_imperial_1795464160135.jpg',
-  'leclat-celeste': '/src/assets/images/bottle_bergamote_celeste_1795464161390.jpg',
-  'coffret-decouverte': '/src/assets/images/bottle_iris_blanc_1795464159068.jpg',
+  'voie-dor': getAssetUrl('/src/assets/images/bottle_santal_imperial_1795464160135.jpg'),
+  'ember-noir': getAssetUrl('/src/assets/images/bottle_oud_velours_1795464159199.jpg'),
+  'lumiere-cherie': getAssetUrl('/src/assets/images/bottle_iris_blanc_1795464159068.jpg'),
+  'aurore-luminaire': getAssetUrl('/src/assets/images/bottle_neroli_soleil_1795464160313.jpg'),
+  'nocturne-ambre': getAssetUrl('/src/assets/images/bottle_rose_nuit_1795464160072.jpg'),
+  'sandalwood-amber': getAssetUrl('/src/assets/images/bottle_santal_imperial_1795464160135.jpg'),
+  'leclat-celeste': getAssetUrl('/src/assets/images/bottle_bergamote_celeste_1795464161390.jpg'),
+  'coffret-decouverte': getAssetUrl('/src/assets/images/bottle_iris_blanc_1795464159068.jpg'),
 };
 
 export const FlaconEngravingStudio: React.FC<FlaconEngravingStudioProps> = ({

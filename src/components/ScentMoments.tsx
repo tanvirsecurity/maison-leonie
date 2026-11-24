@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../lib/assets';
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { FragranceFamily } from '../types/perfume';
@@ -19,7 +20,7 @@ const MOMENTS: Array<{
     title: 'A beginning, all your own.',
     description: 'Bright citrus and green neroli for the quiet breath before the day finds you.',
     family: 'Citrus',
-    image: '/src/assets/images/bottle_neroli_soleil_1795464160313.jpg',
+    image: getAssetUrl('/src/assets/images/bottle_neroli_soleil_1795464160313.jpg'),
     imageAlt: 'Golden neroli perfume catching the morning light',
   },
   {
@@ -27,7 +28,7 @@ const MOMENTS: Array<{
     title: 'A small return to yourself.',
     description: 'Soft iris and petals make a private pause in the middle of an ordinary day.',
     family: 'Floral',
-    image: '/src/assets/images/bottle_iris_blanc_1795464159068.jpg',
+    image: getAssetUrl('/src/assets/images/bottle_iris_blanc_1795464159068.jpg'),
     imageAlt: 'Iris fragrance in a softly lit still life',
   },
   {
@@ -35,7 +36,7 @@ const MOMENTS: Array<{
     title: 'The warmth you carry home.',
     description: 'Amber and woods hold the afterglow of a room you did not want to leave.',
     family: 'Oriental',
-    image: '/src/assets/images/bottle_oud_velours_1795464159199.jpg',
+    image: getAssetUrl('/src/assets/images/bottle_oud_velours_1795464159199.jpg'),
     imageAlt: 'An amber oud fragrance in evening light',
   },
 ];
